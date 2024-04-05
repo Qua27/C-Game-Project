@@ -2,6 +2,7 @@
 #include <stdbool.h>
 
 #include <SDL.h>
+#include <SDL_image.h>
 #include <SDL_ttf.h>
 
 #define WINDOW_WIDTH 800
@@ -39,12 +40,12 @@ int main(__attribute__((unused)) int argc, __attribute__((unused)) char *argv[])
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
     // Load textures
-    SDL_Texture *menuTexture = loadTexture(renderer, "../images/menu.png");
-    SDL_Texture *newGameButtonTexture = loadTexture(renderer, "../images/new_game_button.png");
-    SDL_Texture *exitButtonTexture = loadTexture(renderer, "../images/exit_button.png");
-    SDL_Texture *backgroundTexture = loadTexture(renderer, "../images/background.png");
-    SDL_Texture *character1Texture = loadTexture(renderer, "../images/character1.png");
-    SDL_Texture *character2Texture = loadTexture(renderer, "../images/character2.png");
+    SDL_Texture *menuTexture = loadTexture(renderer, "../assets/images/menu.png");
+    SDL_Texture *newGameButtonTexture = loadTexture(renderer, "../assets/images/new_game_button.png");
+    SDL_Texture *exitButtonTexture = loadTexture(renderer, "../assets/images/exit_button.png");
+    SDL_Texture *backgroundTexture = loadTexture(renderer, "../assets/images/background.png");
+    SDL_Texture *character1Texture = loadTexture(renderer, "../assets/images/character1.png");
+    SDL_Texture *character2Texture = loadTexture(renderer, "../assets/images/character2.png");
 
     TTF_Font *font = TTF_OpenFont("../assets/fonts/OpenSans/OpenSans-Regular.ttf", 24);
     if (!font) {
@@ -106,7 +107,7 @@ int main(__attribute__((unused)) int argc, __attribute__((unused)) char *argv[])
 }
 
 SDL_Texture *loadTexture(SDL_Renderer *renderer, const char *path) {
-    SDL_Surface *surface = SDL_LoadBMP(path);
+    SDL_Surface *surface = IMG_Load(path);
     if (!surface) {
         printf("Unable to load image %s! SDL_Error: %s\n", path, SDL_GetError());
         return NULL;
